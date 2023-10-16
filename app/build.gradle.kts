@@ -5,12 +5,12 @@ plugins {
 
 android {
     namespace = "com.example.devmuscles"
-    compileSdk = 33
+    compileSdk = 34
 
     defaultConfig {
         applicationId = "com.example.devmuscles"
         minSdk = 28
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
 
@@ -71,4 +71,9 @@ dependencies {
     androidTestImplementation(platform("androidx.compose:compose-bom:2023.03.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+//
+    implementation("androidx.compose.material:material-icons-extended:1.6.0-alpha07")
+    val nav_version = "2.7.3"
+    implementation("androidx.navigation:navigation-compose:$nav_version")
+    implementation("com.google.accompanist:accompanist-pager:0.27.1")
 }

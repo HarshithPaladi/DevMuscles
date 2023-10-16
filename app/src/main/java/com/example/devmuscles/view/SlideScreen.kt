@@ -1,10 +1,9 @@
-package com.example.devmuscles
+package com.example.devmuscles.view
 
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -16,7 +15,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.pager.HorizontalPager
 import androidx.compose.foundation.pager.PageSize
@@ -25,7 +23,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
@@ -34,18 +31,16 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
 import androidx.compose.ui.graphics.Path
-import androidx.compose.ui.graphics.drawscope.rotate
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.devmuscles.R
 import com.example.devmuscles.ui.theme.AppGreen
 import kotlinx.coroutines.launch
 
@@ -53,10 +48,10 @@ import kotlinx.coroutines.launch
 @Composable
 @Preview(showBackground = true, showSystemUi = true)
 fun SlideScreenUI(){
-   var pagerState = rememberPagerState(initialPage = 0)
+    var pagerState = rememberPagerState { 3 }
     val scope = rememberCoroutineScope()
     Box(modifier = Modifier.fillMaxSize()){
-        HorizontalPager(pageCount = 3, state = pagerState, pageSize = PageSize.Fill, modifier = Modifier.fillMaxSize()) {index ->
+        HorizontalPager(state = pagerState, pageSize = PageSize.Fill, modifier = Modifier.fillMaxSize()) { index ->
             when(index){
                 0 -> SlideScreenOne()
                 1 -> SlideScreenTwo()
@@ -109,7 +104,7 @@ fun InitialScreen(imageId: Int, heading: String, subHeading: String,sidx:Int){
             .padding(horizontal = 0.dp)
             .fillMaxSize(), alignment = Alignment.TopCenter,
             colorFilter = ColorFilter.colorMatrix(ColorMatrix().apply { setToSaturation(0.5f) })
-            )
+        )
         BoxWithConstraints(modifier = Modifier
             .fillMaxWidth()
             .align(Alignment.TopCenter)){
