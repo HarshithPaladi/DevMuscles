@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBackIos
+import androidx.compose.material.icons.filled.ArrowBackIosNew
 import androidx.compose.material.icons.filled.KeyboardArrowDown
 import androidx.compose.material.icons.filled.LocalFireDepartment
 import androidx.compose.material.icons.filled.PlayCircle
@@ -58,6 +59,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.devmuscles.R
 import com.example.devmuscles.ui.theme.AppBG
 import com.example.devmuscles.ui.theme.AppDarkGray
@@ -70,7 +72,7 @@ import com.google.android.material.chip.Chip
 @Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WorkoutPlanDetailsView(){
+fun WorkoutPlanDetailsView(navController: NavController){
     Scaffold { paddingValues ->
         Column(modifier = Modifier
             .padding(paddingValues)
@@ -85,22 +87,30 @@ fun WorkoutPlanDetailsView(){
                     lazyListState
                 ) {
                     item {
-                        Image(painter = painterResource(id = R.drawable.coverpic1),
-                            contentDescription = "",
-                            contentScale = ContentScale.FillBounds,
-                            modifier = Modifier
-                                .graphicsLayer {
-                                    scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
-                                    translationY = scrolledY * 0.5f
-                                    previousOffset = lazyListState.firstVisibleItemScrollOffset
-                                }
-                                .height(280.dp)
-                                .fillMaxWidth()
-                        )
+                        Box(modifier = Modifier
+                            .height(280.dp)
+                            .fillMaxWidth()){
+                            Image(painter = painterResource(id = R.drawable.coverpic1),
+                                contentDescription = "",
+                                contentScale = ContentScale.FillBounds,
+                                modifier = Modifier
+                                    .graphicsLayer {
+                                        scrolledY += lazyListState.firstVisibleItemScrollOffset - previousOffset
+                                        translationY = scrolledY * 0.5f
+                                        previousOffset = lazyListState.firstVisibleItemScrollOffset
+                                    }
+                                    .fillMaxSize()
+                            )
+                            IconButton(onClick = { navController.popBackStack() }, modifier = Modifier.align(Alignment.TopStart).offset(x=20.dp, y=25.dp).clip(RoundedCornerShape(50)).background(
+                                Color(0x90000000)
+                            ), colors = IconButtonDefaults.iconButtonColors(contentColor = Color.White)) {
+                                Icon(imageVector = Icons.Default.ArrowBackIosNew, contentDescription = "")
+                            }
+                        }
                     }
                     item {
                         Column(modifier = Modifier
-                            .padding(top = 30.dp)
+                            .padding()
                             .clip(
                                 RoundedCornerShape(topStart = 30.dp, topEnd = 30.dp)
                             )
@@ -151,31 +161,40 @@ fun WorkoutPlanDetailsView(){
                                     color = Color.White,
                                     text = "Want your body to be healthy. Join our program with directions according to body’s goals. Increasing physical strength is the goal of strenght training. Maintain body fitness by doing physical exercise at least 2-3 times a week. "
                                 )
-                                Column(modifier = Modifier.fillMaxWidth().padding(top=25.dp)) {
-                                    Row(horizontalArrangement = Arrangement.SpaceBetween,
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        modifier = Modifier
-                                        .fillMaxWidth()
-                                        .clip(RoundedCornerShape(10.dp))
-                                        .background(AppGray)
+                                Column(modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(top = 25.dp)) {
+                                    (1..5).forEach {
+                                        Row(horizontalArrangement = Arrangement.SpaceBetween,
+                                            verticalAlignment = Alignment.CenterVertically,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .clip(RoundedCornerShape(10.dp))
+                                                .background(AppGray)
 
-                                    ) {
-                                        Image(painter = painterResource(id = R.drawable.coverpic1), contentDescription = "", modifier = Modifier.fillMaxWidth(0.25f))
-                                        Column(modifier = Modifier.fillMaxWidth(0.5f).offset(x=(-24).dp), horizontalAlignment = Alignment.Start) {
-                                            Text(text = "Simple Warm-Up\n" +
-                                                    "Exercises", color = Color.White, fontWeight = FontWeight.SemiBold
-                                            )
-                                            Text(text = "0:30", color = AppGreen)
+                                        ) {
+                                            Image(painter = painterResource(id = R.drawable.coverpic1), contentDescription = "", modifier = Modifier.fillMaxWidth(0.25f))
+                                            Column(modifier = Modifier
+                                                .fillMaxWidth(0.5f)
+                                                .offset(x = (-24).dp), horizontalAlignment = Alignment.Start) {
+                                                Text(text = "Simple Warm-Up\n" +
+                                                        "Exercises", color = Color.White, fontWeight = FontWeight.SemiBold
+                                                )
+                                                Text(text = "0:30", color = AppGreen)
+                                            }
+                                            IconButton(onClick = { /*TODO*/ }, modifier = Modifier
+                                                .padding(end = 6.dp)
+                                                .fillMaxWidth(0.25f), colors = IconButtonDefaults.iconButtonColors(
+                                                contentColor = Color.White
+                                            )) {
+                                                Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "")
+                                            }
                                         }
-                                        IconButton(onClick = { /*TODO*/ }, modifier = Modifier.padding(end = 6.dp).fillMaxWidth(0.25f), colors = IconButtonDefaults.iconButtonColors(
-                                            contentColor = Color.White
-                                        )) {
-                                            Icon(imageVector = Icons.Default.KeyboardArrowDown, contentDescription = "")
-                                        }
+                                        Spacer(modifier = Modifier.height(16.dp))
                                     }
                                 }
                             }
-                            Spacer(modifier = Modifier.height(160.dp))
+                            Spacer(modifier = Modifier.height(140.dp))
                         }
                     }
                 }

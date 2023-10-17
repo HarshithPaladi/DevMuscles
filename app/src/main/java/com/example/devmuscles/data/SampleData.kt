@@ -9,10 +9,27 @@ var beginnerWorkoutList = listOf<WorkoutCategory>(
     WorkoutCategory("Full Body Goal Crusher","07 Workouts for Beginner", R.drawable.woc2, true),
     WorkoutCategory("Lower Body Strength","05 Workouts  for Beginner", R.drawable.woc3, true),
     WorkoutCategory("Wake Up Call","05 Workouts for Beginner", R.drawable.woc4, true),
-    WorkoutCategory("Learn the Basic of Training","06 Workouts  for Beginner", R.drawable.woc7,false),
-    WorkoutCategory("Learn the Basic of Training","06 Workouts  for Beginner", R.drawable.woc5,false)
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Beginner", R.drawable.woc7,false),
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Beginner", R.drawable.woc5,false)
 )
 
+var intermediateWorkoutList = listOf<WorkoutCategory>(
+    WorkoutCategory("Wake Up Call","04 Workouts for Intermediate", R.drawable.woc1, false),
+    WorkoutCategory("Full Body Goal Crusher","07 Workouts for Intermediate", R.drawable.woc2, true),
+    WorkoutCategory("Lower Body Strength","05 Workouts for Intermediate", R.drawable.woc3, true),
+    WorkoutCategory("Wake Up Call","05 Workouts for Intermediate", R.drawable.woc4, true),
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Intermediate", R.drawable.woc7,false),
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Intermediate", R.drawable.woc5,false)
+)
+
+var advancedWorkoutList = listOf<WorkoutCategory>(
+    WorkoutCategory("Wake Up Call","04 Workouts for Advanced", R.drawable.woc1, false),
+    WorkoutCategory("Full Body Goal Crusher","07 Workouts for Advanced", R.drawable.woc2, true),
+    WorkoutCategory("Lower Body Strength","05 Workouts  for Advanced", R.drawable.woc3, true),
+    WorkoutCategory("Wake Up Call","05 Workouts for Advanced", R.drawable.woc4, true),
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Advanced", R.drawable.woc7,false),
+    WorkoutCategory("Learn the Basic of Training","06 Workouts for Advanced", R.drawable.woc5,false)
+)
 var trainersList = listOf<FitnessTrainer>(
     FitnessTrainer("Richard Will",4.8,"High Intensity Training",5),
     FitnessTrainer("Jennifer James",4.6,"Functional Strength",4),

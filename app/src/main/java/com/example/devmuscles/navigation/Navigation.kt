@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.devmuscles.view.HomeScreen
+import com.example.devmuscles.view.InsightScreen
 import com.example.devmuscles.view.WorkoutPlanDetailsView
 import com.example.devmuscles.view.workOutCategoriesView
 
@@ -16,10 +17,13 @@ fun NavigationComposable(){
             HomeScreen(navController=navController)
         }
         composable("workoutPlanDetails"){
-            WorkoutPlanDetailsView()
+            WorkoutPlanDetailsView(navController=navController)
         }
         composable("workOutCategories"){
-            workOutCategoriesView()
+            workOutCategoriesView(navController = navController)
+        }
+        composable("insights"){
+            InsightScreen(navController = navController)
         }
     }
 }

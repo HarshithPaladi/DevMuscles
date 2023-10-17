@@ -54,26 +54,34 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import java.util.Date
 import com.example.devmuscles.R
+import com.example.devmuscles.data.advancedWorkoutList
 import com.example.devmuscles.data.beginnerWorkoutList
+import com.example.devmuscles.data.intermediateWorkoutList
+import com.example.devmuscles.model.WorkoutCategory
 import com.example.devmuscles.ui.theme.AppBG
 import com.example.devmuscles.ui.theme.AppDarkGray
 import com.example.devmuscles.ui.theme.AppGreen
 import com.example.devmuscles.ui.theme.AppRed
+import com.example.devmuscles.viewModel.GlobalData
 
 @OptIn(ExperimentalFoundationApi::class, ExperimentalMaterial3Api::class)
 @Composable
 fun HomeScreen(navController:NavController){
+    var globalData = viewModel<GlobalData>()
+    globalData.updateSelectedItem(0)
     Scaffold(
         bottomBar = {
-            BottomAppBarComposable()
+            BottomAppBarComposable(navController=navController)
         }
     ) {
         paddingValues ->  Column(modifier = Modifier
@@ -85,10 +93,10 @@ fun HomeScreen(navController:NavController){
         Column(Modifier.padding(horizontal = 20.dp)) {
             val name = "Teja"
             Row {
-                Text(text = "Hello ", color = Color.White, fontSize = 34.sp, fontWeight = FontWeight.Bold)
+                Text(text = stringResource(id = R.string.hello), color = Color.White, fontSize = 34.sp, fontWeight = FontWeight.Bold)
                 Text(text = "$name,", color = Color.White, fontSize = 34.sp, fontWeight = FontWeight.Black)
             }
-            Text(text = "Good Morning.", color = Color.White,)
+            Text(text = stringResource(id = R.string.wish), color = Color.White)
         }
         Column(modifier = Modifier
             .padding(top = 10.dp, bottom = 15.dp)
@@ -142,12 +150,19 @@ fun HomeScreen(navController:NavController){
                             .height(30.dp))
                 }
             }
-
+            var items by remember {
+                mutableStateOf<List<WorkoutCategory>?>(null)
+            }
+            when(tabIndex){
+                0 -> items= beginnerWorkoutList.reversed()
+                1 -> items= intermediateWorkoutList.reversed()
+                2 -> items = advancedWorkoutList.reversed()
+            }
             LazyRow(modifier = Modifier
                 .padding(start = 20.dp)
                 .fillMaxWidth()){
 
-                items(beginnerWorkoutList.reversed()){
+                items(items!!){
                     Box(modifier = Modifier
                         .padding(end = 15.dp)
                         .width(320.dp)){
@@ -199,13 +214,16 @@ fun CardBox(text1: String, text2: String, isClickable: Boolean, onClick: () -> U
             }
             .clip(
                 RoundedCornerShape(20.dp)
-            ), contentScale = ContentScale.FillBounds,)
+            ), contentScale = ContentScale.Crop,)
         Box(modifier = Modifier
             .clip(RoundedCornerShape(20.dp))
             .matchParentSize()
             .background(gradient))
         if(isPro==true){
-            Row(modifier = Modifier.align(Alignment.BottomStart).fillMaxWidth().padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Bottom) {
+            Row(modifier = Modifier
+                .align(Alignment.BottomStart)
+                .fillMaxWidth()
+                .padding(14.dp), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.Bottom) {
                 Column(modifier = Modifier
                     ) {
                     Text(text = "$text1", color = Color.White, fontWeight = FontWeight.SemiBold, modifier = Modifier.padding(vertical = 4.dp))

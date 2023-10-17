@@ -34,7 +34,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.example.devmuscles.R
+import com.example.devmuscles.data.advancedWorkoutList
 import com.example.devmuscles.data.beginnerWorkoutList
+import com.example.devmuscles.data.intermediateWorkoutList
 import com.example.devmuscles.model.WorkoutCategory
 import com.example.devmuscles.ui.theme.AppBG
 import com.example.devmuscles.ui.theme.AppDarkGray
@@ -44,13 +46,12 @@ import org.intellij.lang.annotations.JdkConstants.HorizontalAlignment
 
 
 
-@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun workOutCategoriesView() {
+fun workOutCategoriesView(navController: NavController) {
     Scaffold(
         bottomBar = {
-            BottomAppBarComposable()
+            BottomAppBarComposable(navController)
         }
     ) {
         Column(
@@ -89,8 +90,16 @@ fun workOutCategoriesView() {
                     )
                 }
             }
+            var items by remember {
+                mutableStateOf<List<WorkoutCategory>?>(null)
+            }
+            when(tabIndex){
+                0 -> items= beginnerWorkoutList.reversed()
+                1 -> items= intermediateWorkoutList.reversed()
+                2 -> items = advancedWorkoutList.reversed()
+            }
             LazyColumn(modifier = Modifier.padding(horizontal = 20.dp)){
-                items(beginnerWorkoutList){
+                items(items!!){
                     CardBox(text1 = it.text1, text2 = it.text2, imageId = it.imageId, isClickable = false, onClick = {}, isPro = it.isPro)
                     Spacer(modifier = Modifier.height(20.dp))
                 }
