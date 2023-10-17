@@ -47,6 +47,7 @@ import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewParameter
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -61,6 +62,7 @@ import com.example.devmuscles.utils.getMonthName
 import com.example.devmuscles.viewModel.GlobalData
 import kotlinx.coroutines.launch
 import java.time.LocalDate
+
 @SuppressLint("CoroutineCreationDuringComposition")
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -77,9 +79,9 @@ fun InsightScreen(navController:NavController) {
             .background(Color.Black)
             .verticalScroll(rememberScrollState())) {
             Column(modifier = Modifier
-                .padding(bottom = 40.dp)
+                .padding(bottom = 25.dp)
                 .clip(
-                    RoundedCornerShape(bottomEnd = 40.dp, bottomStart = 30.dp)
+                    RoundedCornerShape(bottomEnd = 30.dp, bottomStart = 30.dp)
                 )
                 .background(AppBG)) {
                 val currentDate = LocalDate.now()
@@ -139,7 +141,7 @@ fun InsightScreen(navController:NavController) {
                         Icon(imageVector = Icons.AutoMirrored.Filled.ArrowForwardIos, contentDescription = "")
                     }
                 }
-                LazyRow(state = lazyListState, modifier = Modifier.padding(bottom = 20.dp)){
+                LazyRow(state = lazyListState, modifier = Modifier.padding(bottom = 14.dp)){
                     items(datesWithDay(currentYear,currentMonth)){
                         var currentDayBGColor = if((currentMonth==currentDate.monthValue) && (currentYear==currentDate.year) && (currentDay==it.date)) AppGreen else AppGray
                         var currentDayTextColor = if((currentMonth==currentDate.monthValue) && (currentYear==currentDate.year) && (currentDay==it.date)) Color.Black else Color.White
@@ -149,7 +151,7 @@ fun InsightScreen(navController:NavController) {
                             .background(currentDayBGColor)
                             .padding(vertical = 12.dp, horizontal = 16.dp), verticalArrangement = Arrangement.Center, horizontalAlignment = Alignment.CenterHorizontally) {
                             Text(text = "${it.day}", color = currentDayTextColor)
-                            Spacer(modifier = Modifier.height(8.dp))
+                            Spacer(modifier = Modifier.height(4.dp))
                             Text(text = "${it.date}", fontWeight = FontWeight.Bold, color = currentDayTextColor)
                         }
                     }
