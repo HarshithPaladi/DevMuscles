@@ -33,38 +33,56 @@ fun BottomAppBarComposable(navController: NavController) {
         selectedIconColor = Color.White,
         indicatorColor = AppDarkGray
     )
-    NavigationBar( containerColor = AppDarkGray) {
-
-
-        NavigationBarItem(selected = globalData.selectedItem==0, onClick = {
+    NavigationBar(containerColor = AppDarkGray) {
+        NavigationBarItem(selected = globalData.selectedItem == 0, onClick = {
             globalData.updateSelectedItem(0)
-            navController.navigate("home") }, icon = { Icon(
-            imageVector = Icons.Filled.Home,
-            contentDescription = "",
-        ) },
+            navController.navigate("home")
+        }, icon = {
+            Icon(
+                imageVector = Icons.Filled.Home,
+                contentDescription = "",
+            )
+        },
             colors = nabBarItemColor
         )
-        NavigationBarItem(selected = globalData.selectedItem==1, onClick = {
+        NavigationBarItem(selected = globalData.selectedItem == 1, onClick = {
             globalData.updateSelectedItem(1)
-            navController.navigate("insights") }, icon = { Icon(
-            imageVector = Icons.Filled.ClearAll,
-            contentDescription = ""
-        ) },
-            colors = nabBarItemColor)
-        NavigationBarItem(selected = globalData.selectedItem==2, onClick = { globalData.updateSelectedItem(2) }, icon = { BadgedBox(
-            badge = {
-                Badge(containerColor = AppGreen)
-            }) {
+            navController.navigate("insights")
+        }, icon = {
             Icon(
-                imageVector = Icons.Filled.Notifications,
+                imageVector = Icons.Filled.ClearAll,
                 contentDescription = ""
             )
-        } },
-            colors = nabBarItemColor)
-        NavigationBarItem(selected = globalData.selectedItem==3, onClick = { globalData.updateSelectedItem(3)}, icon = { Icon(
-            imageVector = Icons.Filled.Face,
-            contentDescription = ""
-        ) },
-            colors = nabBarItemColor)
+        },
+            colors = nabBarItemColor
+        )
+        NavigationBarItem(selected = globalData.selectedItem == 2, onClick = {
+            globalData.updateSelectedItem(2)
+            navController.navigate("notifications")
+        }, icon = {
+            BadgedBox(
+                badge = {
+                    Badge(containerColor = AppGreen)
+                }) {
+                Icon(
+                    imageVector = Icons.Filled.Notifications,
+                    contentDescription = ""
+                )
+            }
+        },
+            colors = nabBarItemColor
+        )
+        NavigationBarItem(selected = globalData.selectedItem == 3,
+            onClick = {
+                navController.navigate("profile")
+                globalData.updateSelectedItem(3) },
+            icon = {
+                Icon(
+                    imageVector = Icons.Filled.Face,
+                    contentDescription = ""
+                )
+            },
+            colors = nabBarItemColor
+        )
     }
 }

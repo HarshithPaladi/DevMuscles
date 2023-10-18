@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import androidx.core.view.WindowCompat
 import com.example.devmuscles.navigation.NavigationComposable
 import com.example.devmuscles.ui.theme.DevMusclesTheme
 import com.example.devmuscles.view.HomeScreen
@@ -23,8 +24,10 @@ import com.example.devmuscles.view.WorkoutPlanDetailsView
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContent {
             DevMusclesTheme {
+//                WindowCompat.setDecorFitsSystemWindows(window, false)
                 // A surface container using the 'background' color from the theme
                 Surface(
                     modifier = Modifier.fillMaxSize(),

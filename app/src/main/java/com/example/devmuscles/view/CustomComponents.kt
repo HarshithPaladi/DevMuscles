@@ -5,6 +5,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.TextUnit
 import com.example.devmuscles.ui.theme.AppGreen
@@ -35,6 +36,11 @@ fun TextWhite(text:String, fontWeight: FontWeight?, fontSize: TextUnit){
 @Composable
 fun TextWhite(text:String){
     Text(text = text, color = Color.White)
+}
+
+@Composable
+fun TextWhite(text:String, style: TextStyle){
+    Text(text = text, color = Color.White, style = style)
 }
 
 @Composable

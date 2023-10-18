@@ -69,7 +69,6 @@ import com.google.android.material.chip.Chip
 
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
-@Preview
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun WorkoutPlanDetailsView(navController: NavController){
