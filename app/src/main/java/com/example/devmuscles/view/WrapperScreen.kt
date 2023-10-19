@@ -41,7 +41,7 @@ import com.google.android.material.bottomappbar.BottomAppBar
 //title:String, content:@Composable () -> Unit
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun WrapperScreen(title:String, content:@Composable () -> Unit, bottomAppBar: @Composable () -> Unit?) {
+fun WrapperScreen(title:String, content:@Composable () -> Unit, bottomAppBar: @Composable () -> Unit?, navController: NavController) {
     Scaffold(
         bottomBar = {
             if (bottomAppBar!==null){
@@ -62,7 +62,7 @@ fun WrapperScreen(title:String, content:@Composable () -> Unit, bottomAppBar: @C
                         .fillMaxHeight()
                         .padding(bottom = 28.dp), contentAlignment = Alignment.BottomCenter){
                         IconButton(
-                            onClick = { /*TODO*/ },
+                            onClick = { navController.popBackStack() },
                             colors = IconButtonDefaults.iconButtonColors(
                                 contentColor = Color.White,
                                 containerColor = AppGray

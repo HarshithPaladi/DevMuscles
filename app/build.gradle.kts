@@ -76,4 +76,6 @@ dependencies {
     val nav_version = "2.7.3"
     implementation("androidx.navigation:navigation-compose:$nav_version")
     implementation("com.google.accompanist:accompanist-pager:0.27.1")
+
+    implementation("me.saket.swipe:swipe:1.2.0")
 }

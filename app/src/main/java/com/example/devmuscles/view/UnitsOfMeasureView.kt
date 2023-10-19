@@ -2,11 +2,10 @@ package com.example.devmuscles.view
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavController
 
-@Preview
+
 @Composable
-fun UnitsOfMeasureView(){
-    WrapperScreen(title = "UNITS OF MEASURE", content = { /*TODO*/ }) {
-        
-    }
+fun UnitsOfMeasureView(navController: NavController){
+    WrapperScreen(title = "UNITS OF MEASURE",navController=navController, bottomAppBar = {}, content = { /*TODO*/ })
 }

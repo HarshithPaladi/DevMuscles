@@ -25,6 +25,11 @@ fun TextWhite(text:String, fontSize: TextUnit, modifier: Modifier){
 }
 
 @Composable
+fun TextWhite(text:String, fontWeight: FontWeight, modifier: Modifier){
+    Text(text = text, fontWeight = fontWeight, color = Color.White, modifier = modifier)
+}
+
+@Composable
 fun TextWhite(text:String, fontSize: TextUnit){
     Text(text = text, fontSize = fontSize, color = Color.White)
 }

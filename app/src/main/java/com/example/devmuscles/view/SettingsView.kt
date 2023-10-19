@@ -19,12 +19,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.devmuscles.ui.theme.AppGray
 
-@Preview
 @Composable
-fun SettingsScreen(){
-    WrapperScreen(title = "SETTINGS", content = {
+fun SettingsScreen(navController:NavController){
+    WrapperScreen(title = "SETTINGS", navController = navController, bottomAppBar = {}, content = {
         Column(Modifier.padding(horizontal = 25.dp).fillMaxHeight()) {
             listOf<String>("Units of Measure","Notifications","Language", "Contact Us").forEach {
                 Row(modifier = Modifier.padding(vertical = 18.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
@@ -34,7 +34,5 @@ fun SettingsScreen(){
                 Divider(color = AppGray)
             }
         }
-    }) {
-
-    }
+    })
 }

@@ -42,3 +42,10 @@ var trainersList = listOf<FitnessTrainer>(
     FitnessTrainer("",0.0,"",0)
 
 )
+
+data class Notification(val text1:String, val text2:String, val time:String)
+var notifications = listOf<Notification>(
+    Notification("Congratulations","35% your daily challenge completed","9:45 AM"),
+    Notification("Attention","Your subscription is going to expire very soon. Subscribe now.","9:38 AM"),
+    Notification("Daily Attention","Time for your workout session ","8:25 AM")
+)

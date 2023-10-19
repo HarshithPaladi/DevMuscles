@@ -18,16 +18,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import com.example.devmuscles.ui.theme.AppGray
 import com.example.devmuscles.ui.theme.AppGreen
 
 
 @OptIn(ExperimentalMaterial3Api::class)
-@Preview
-@Preview
 @Composable
-fun EditProfileScreen() {
-    WrapperScreen(title = "EDIT PROFILE", content = {
+fun EditProfileScreen(navController: NavController) {
+    WrapperScreen(title = "EDIT PROFILE", navController = navController, bottomAppBar = {}, content = {
         Column(modifier = Modifier
             .padding(horizontal = 25.dp)
             .fillMaxWidth()) {
@@ -61,7 +60,5 @@ fun EditProfileScreen() {
                 BottomButtonBox()
             }
         }
-    }) {
-
-    }
+    })
 }

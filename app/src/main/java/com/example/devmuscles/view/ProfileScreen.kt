@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowForwardIos
@@ -46,11 +49,13 @@ fun ProfileScreen(navController: NavController) {
     var globalData = viewModel<GlobalData>()
     globalData.updateSelectedItem(3)
     var isProUser = false
-    WrapperScreen(title = "", content = {
+    WrapperScreen(title = "", navController = navController, content = {
         Column(modifier = Modifier
             .padding(horizontal = 25.dp)
             .fillMaxHeight()) {
-            Row(modifier = Modifier.padding(bottom = 15.dp).fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+            Row(modifier = Modifier
+                .padding(bottom = 15.dp)
+                .fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                 Box(modifier = Modifier){
                     GradientProgressIndicator(
                         progress = 0.75f,
@@ -79,16 +84,33 @@ fun ProfileScreen(navController: NavController) {
                         }
                     }
                 }
-                Column(Modifier) {
-                    Text(text = "Joined")
-                    TextWhite(text = "2 months Ago")
+                Box(modifier = Modifier){
+                    Divider(modifier = Modifier
+                        .height(90.dp)
+                        .width((1.5).dp)
+                        .align(Alignment.CenterStart), color = AppGray)
+                    Column(
+                        Modifier
+                            .padding(start = 10.dp)
+                            .fillMaxWidth(0.7f)
+                            .height(110.dp), verticalArrangement = Arrangement.Center) {
+                        TextWhite(text = "Joined")
+                        TextWhite(text = "2 months Ago",fontWeight = FontWeight.Medium, fontSize = 15.sp, modifier = Modifier.padding(vertical = 3.dp))
+                        if(isProUser){
+                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(text = "Pro Member", color = AppRed, fontSize = 12.sp)
+                            TextWhite(text = "Until 18 Jul 2022",fontWeight = FontWeight.Medium, modifier = Modifier.padding(vertical = 3.dp))
+                            TextWhite(text = "12 Months Subscription", fontSize = 12.sp)
+
+                        }
+                    }
                 }
             }
             TextWhite(text = "SARAH", fontSize = 34.sp, fontWeight = FontWeight.Black)
             TextWhite(text = "WEGAN", fontSize = 34.sp, fontWeight = FontWeight.SemiBold)
             Column(
                 Modifier
-                    .padding(top = 14.dp)
+                    .padding(top = 18.dp)
                     .fillMaxHeight(), verticalArrangement = Arrangement.SpaceBetween) {
                 Column() {
                     Divider(color = AppGray)
@@ -120,19 +142,16 @@ fun ProfileScreen(navController: NavController) {
                         .fillMaxWidth(), verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                         Column {
                             TextWhite(text = "PRO", fontWeight = FontWeight.SemiBold,fontSize=15.sp, modifier = Modifier
-                                .padding(bottom = 2.dp)
+                                .padding(bottom = 6.dp)
                                 .background(AppRed)
-                                .padding(horizontal = 4.dp, vertical = 2.dp)
-                                .clip(
-                                    RoundedCornerShape(50)
-                                ))
-                            TextWhite(text = "Upgrade to Premium", fontWeight = FontWeight.SemiBold, fontSize = 17.sp, modifier = Modifier.padding(bottom = 6.dp))
+                                .padding(horizontal = 4.dp, vertical = 2.dp))
+                            TextWhite(text = "Upgrade to Premium", fontWeight = FontWeight.Medium, fontSize = 17.sp, modifier = Modifier.padding(bottom = 6.dp))
                             TextWhite(text = "This subscription is auto-renewable")
                         }
                         Icon(imageVector = Icons.Default.ArrowForwardIos, contentDescription = "", tint = Color.White, modifier = Modifier.size(18.dp))
                     }
                 }
-                Column(modifier = Modifier.padding(bottom = 30.dp)) {
+                Column(modifier = Modifier.padding(bottom =40.dp)) {
                     Divider(color = AppGray)
                     TextButton(onClick = { /*TODO*/ }) {
                         Text(text = "Sign Out", color = AppRed)

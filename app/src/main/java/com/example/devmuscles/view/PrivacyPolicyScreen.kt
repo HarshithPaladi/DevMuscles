@@ -15,10 +15,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.em
 import androidx.navigation.NavController
 
-@Preview
 @Composable
-fun PrivacyPolicyScreen(){
-    WrapperScreen(title = "PRIVACY POLICY", content = {
+fun PrivacyPolicyScreen(navController: NavController){
+    WrapperScreen(title = "PRIVACY POLICY", navController = navController, bottomAppBar = {}, content = {
         var loremText1 = "Consectetur adipiscing elit. Natoque phasellus lobortis mattis cursus faucibus hac proin risus. Turpis phasellus massa ullamcorper volutpat. Ornare commodo non integer fermentum nisi, morbi id. Vel tortor mauris feugiat amet, maecenas facilisis risus, in faucibus. Vestibulum ullamcorper fames eget enim diam fames faucibus duis ac. Aliquam non tellus semper in dignissim nascetur venenatis lacus. "
         var loremText2 = "Lectus vel non varius interdum vel tellus sed mattis. Sit laoreet auctor arcu mauris tincidunt sociis tristique pharetra neque. Aliquam pharetra elementum nisl sapien. Erat nisl morbi eu dolor in. Sapien ut lacus dui libero morbi tristique. "
         Column(Modifier.padding(horizontal = 25.dp)) {
@@ -39,7 +38,5 @@ fun PrivacyPolicyScreen(){
                 Spacer(modifier = Modifier.height(8.dp))
             }
         }
-    }) {
-        
-    }
+    })
 }

@@ -1,5 +1,15 @@
 package com.example.devmuscles.navigation
 
+import androidx.compose.animation.core.FastOutLinearInEasing
+import androidx.compose.animation.core.LinearOutSlowInEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.keyframes
+import androidx.compose.animation.core.repeatable
+import androidx.compose.animation.core.snap
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -34,16 +44,16 @@ fun NavigationComposable(){
             NotificationScreen(navController=navController)
         }
         composable("privacyPolicy"){
-            PrivacyPolicyScreen()
+            PrivacyPolicyScreen(navController = navController)
         }
-        composable("profile"){
+        composable("profile", enterTransition = {scaleIn()}){
             ProfileScreen(navController=navController)
         }
         composable("editProfile"){
-            EditProfileScreen()
+            EditProfileScreen(navController=navController)
         }
         composable("settings"){
-            SettingsScreen()
+            SettingsScreen(navController=navController)
         }
     }
 }
