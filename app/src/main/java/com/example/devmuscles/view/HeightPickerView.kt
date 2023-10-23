@@ -24,7 +24,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.unit.times
 import androidx.navigation.NavController
 import com.example.devmuscles.components.ArrowBackButton
 import com.example.devmuscles.components.IconNavigationButton
@@ -33,7 +32,6 @@ import com.example.devmuscles.components.rememberPickerState
 import com.example.devmuscles.ui.theme.AppBG
 import com.example.devmuscles.ui.theme.AppGreen
 import com.example.devmuscles.ui.theme.AppWhite
-import kotlin.text.Typography.times
 
 @Composable
 fun HeightPickerView(navController: NavController){
@@ -88,7 +86,8 @@ fun HeightPicker(navController: NavController){
                 textModifier = Modifier.padding(8.dp),
                 textStyle = TextStyle(fontSize = 32.sp),
                 dividerColor = AppGreen,
-                textColor = AppWhite
+                textColor = AppWhite,
+                startIndex = 4
             )
             Text(text = "cm",
                 modifier = Modifier.offset(

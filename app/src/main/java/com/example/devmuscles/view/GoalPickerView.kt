@@ -77,8 +77,8 @@ fun GoalPicker(navController: NavController){
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-//                .padding(start = configuration.smallestScreenWidthDp.times(0.05f).dp,
-//                    end = configuration.smallestScreenWidthDp.times(0.05f).dp)
+                .padding(start = configuration.smallestScreenWidthDp.times(0.05f).dp,
+                    end = configuration.smallestScreenWidthDp.times(0.05f).dp)
         ) {
             Picker(
                 state = valuesPickerState,

@@ -32,23 +32,23 @@ import com.example.devmuscles.ui.theme.AppGreen
 import com.example.devmuscles.ui.theme.AppWhite
 
 @Composable
-fun AgePickerView(navController: NavController){
+fun ActivityPickerView(navController: NavController){
     Box(modifier = Modifier
         .fillMaxSize()
         .background(AppBG)
-        ){
+    ){
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 56.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            AgePicker(navController = navController)
+            ActivityPicker(navController = navController)
         }
     }
 }
 @Composable
-fun AgePicker(navController: NavController){
+fun ActivityPicker(navController: NavController){
     val configuration = LocalConfiguration.current
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -56,7 +56,12 @@ fun AgePicker(navController: NavController){
         )
     ) {
         TextWhite(
-            text = "HOW OLD ARE YOU ?",
+            text = "YOUR REGULAR PHYSICAL",
+            fontSize = 24.sp,
+            fontWeight = FontWeight(900)
+        )
+        TextWhite(
+            text = "ACTIVITY GOAL?",
             fontSize = 24.sp,
             fontWeight = FontWeight(900)
         )
@@ -68,14 +73,14 @@ fun AgePicker(navController: NavController){
         )
         Spacer(modifier = Modifier.padding(top = (configuration.screenHeightDp.times(0.15f).dp)))
 
-        val values = remember { (1..120).map { it.toString() } }
+        val values = remember { listOf("Rookie", "Beginner", "Intermediate", "Advanced", "True Beast") }
         val valuesPickerState = rememberPickerState()
 
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = configuration.smallestScreenWidthDp.times(0.30f).dp,
-                    end = configuration.smallestScreenWidthDp.times(0.30f).dp)
+                .padding(start = configuration.smallestScreenWidthDp.times(0.10f).dp,
+                    end = configuration.smallestScreenWidthDp.times(0.10f).dp)
         ) {
             Picker(
                 state = valuesPickerState,
@@ -84,7 +89,8 @@ fun AgePicker(navController: NavController){
                 textModifier = Modifier.padding(8.dp),
                 textStyle = TextStyle(fontSize = 32.sp),
                 dividerColor = AppGreen,
-                textColor = AppWhite
+                textColor = AppWhite,
+//                enableInfiniteScroll = false
             )
         }
 
@@ -104,16 +110,16 @@ fun AgePicker(navController: NavController){
                 contentAlignment = Alignment.BottomStart
             ) {
                 ArrowBackButton(onClick = {
-                    navController.navigate("gender")
+                    navController.navigate("goal_picker")
                 })
             }
             Box(
                 contentAlignment = Alignment.BottomEnd
             ) {
                 IconNavigationButton(
-                    text = "NEXT",
+                    text = "START",
                     onClick = {
-                        navController.navigate("weight_picker")
+                        navController.navigate("activity_picker")
                     },
                     icon = Icons.AutoMirrored.Filled.ArrowForward,
                 )
@@ -124,7 +130,7 @@ fun AgePicker(navController: NavController){
 
 @Preview(showBackground = true, showSystemUi = true)
 @Composable
-fun AgePickerPreview(){
+fun ActivityPickerPreview(){
 //    AgeExample()
-    AgePicker(navController = NavController(LocalContext.current))
+    ActivityPickerView(navController = NavController(LocalContext.current))
 }

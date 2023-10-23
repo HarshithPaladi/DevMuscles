@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.devmuscles.view.ActivityPickerView
 import com.example.devmuscles.view.AgePicker
 import com.example.devmuscles.view.AgePickerView
 import com.example.devmuscles.view.EditProfileScreen
@@ -33,7 +34,7 @@ import com.example.devmuscles.view.workOutCategoriesView
 @Composable
 fun NavigationComposable(){
     var navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "goal_picker"){
+    NavHost(navController = navController, startDestination = "weight_picker"){
         composable("gender"){
             GenderPickerView(navController = navController)
         }
@@ -48,6 +49,9 @@ fun NavigationComposable(){
         }
         composable("goal_picker"){
             GoalPickerView(navController = navController)
+        }
+        composable("activity_picker"){
+            ActivityPickerView(navController = navController)
         }
         composable("home"){
             HomeScreen(navController=navController)
