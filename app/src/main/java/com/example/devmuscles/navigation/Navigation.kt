@@ -26,7 +26,7 @@ import com.example.devmuscles.view.workOutCategoriesView
 @Composable
 fun NavigationComposable(){
     var navController = rememberNavController()
-    NavHost(navController = navController, startDestination = "login"){
+    NavHost(navController = navController, startDestination = "gender"){
         composable("gender"){
             GenderPickerView(navController = navController)
         }
