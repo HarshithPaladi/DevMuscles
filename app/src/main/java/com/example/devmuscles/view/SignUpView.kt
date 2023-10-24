@@ -111,18 +111,22 @@ fun SignUpScreen(navController: NavController){
             }
 
         }
-        var a by remember {
-            mutableStateOf("")
-        }
-        var b by remember {
-            mutableStateOf("")
-        }
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = configuration.screenHeightDp.dp / 1.8f, start = 48.dp, end = 48.dp),
 
             ){
+            var a by remember {
+                mutableStateOf("")
+            }
+            var b by remember {
+                mutableStateOf("")
+            }
+            var c by remember {
+                mutableStateOf("")
+            }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center,
@@ -133,7 +137,7 @@ fun SignUpScreen(navController: NavController){
                 CustomTextField(value = b, label = "Password", onValueChange = {b = it},
                     trailingIcon = Icons.AutoMirrored.Filled.FactCheck)
                 Spacer(modifier = Modifier.padding(top = 24.dp))
-                CustomTextField(value = b, label = "Password Again", onValueChange = {b = it},
+                CustomTextField(value = c, label = "Password Again", onValueChange = {c = it},
                     trailingIcon = Icons.AutoMirrored.Filled.FactCheck)
             }
 

@@ -123,18 +123,19 @@ fun LoginScreen(navController: NavController){
                 )
 
         }
-        var a by remember {
-            mutableStateOf("")
-        }
-        var b by remember {
-            mutableStateOf("")
-        }
+
         Box(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = configuration.screenHeightDp.dp / 1.6f, start = 48.dp, end = 48.dp),
 
         ){
+            var a by remember {
+                mutableStateOf("")
+            }
+            var b by remember {
+                mutableStateOf("")
+            }
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.Center
@@ -229,12 +230,14 @@ fun LogoButton(
 @Composable
 fun CustomTextField(
     value: String,
-    label: String,
     onValueChange: (String) -> Unit,
-    trailingIcon: ImageVector? = null,
-){
-    TextField(value = value, onValueChange ={ onValueChange},
-        label = { Text(text = label)},
+    label: String,
+    trailingIcon: ImageVector? = null
+) {
+    TextField(
+        value = value,
+        onValueChange = onValueChange,
+        label = { Text(text = label) },
         modifier = Modifier
             .background(Color.Transparent)
             .border(0.dp, Color.Transparent),
@@ -249,13 +252,14 @@ fun CustomTextField(
             textColor = Color.White
         ),
         trailingIcon = {
-            Icon(
-                imageVector = trailingIcon!!,
-                contentDescription = null,
-                tint = AppGreen
-            )
+            trailingIcon?.let {
+                Icon(
+                    imageVector = it,
+                    contentDescription = null,
+                    tint = AppGreen
+                )
+            }
         }
-
     )
 }
 
