@@ -35,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.ColorMatrix
@@ -54,6 +55,7 @@ import com.example.devmuscles.R
 import com.example.devmuscles.components.ClickableTextWithUnderline
 import com.example.devmuscles.components.IconNavigationButton
 import com.example.devmuscles.ui.theme.AppDarkGray
+import com.example.devmuscles.ui.theme.AppGray
 import com.example.devmuscles.ui.theme.AppGreen
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -89,9 +91,19 @@ fun LoginScreen(navController: NavController){
             }
         }
         Box {
-            Row {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                modifier = Modifier.fillMaxWidth().padding(top = 40.dp)
+            ) {
                 ClickableTextWithUnderline(text = "Login", navController = navController)
                 ClickableTextWithUnderline(text = "Sign Up", requireUnderline = false, navController = navController)
+                Spacer(modifier = Modifier.padding(start = 100.dp))
+                Image(painter = painterResource(id = R.drawable.profile_pic1), contentDescription ="",
+                    modifier = Modifier
+                        .clip(CircleShape)
+                        .size(60.dp)
+                        .border(2.dp, AppGray, CircleShape),
+                    alignment = Alignment.Center)
             }
         }
         val configuration  = LocalContext.current.resources.configuration
@@ -145,38 +157,48 @@ fun LoginScreen(navController: NavController){
                 modifier = Modifier.padding(top = 16.dp))
         }
 
-        Box(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(bottom = 20.dp, start = 20.dp, end = 20.dp)
-        ) {
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceEvenly
-            ) {
-                LogoButton(
-                    onClick = { /* handle Apple login */ },
-                    icon = painterResource(id = R.drawable.apple),
-                    contentDescription = "Apple logo"
-                )
-                LogoButton(
-                    onClick = { /* handle Google login */ },
-                    icon = painterResource(id = R.drawable.google),
-                    contentDescription = "Google logo"
-                )
-                IconNavigationButton(onClick = { /*TODO*/ },
-                    icon = Icons.AutoMirrored.Filled.ArrowForward,
-                    modifier = Modifier.padding(start = 16.dp),
-                    text = "Login",
-                    )
-            }
-        }
-
-
+       LoginScreenButtons( modifier = Modifier
+           .padding(bottom = 20.dp, start = 20.dp, end = 20.dp)
+           .align(Alignment.BottomCenter),
+           action = "Login",
+           onClick = { navController.navigate("home")},
+       )
     }
 }
 
+
+@Composable
+fun LoginScreenButtons(
+    modifier: Modifier = Modifier,
+    action: String,
+    onClick: () -> Unit
+){
+    Box(
+        modifier = modifier
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceEvenly
+        ) {
+            LogoButton(
+                onClick = { /* handle Apple login */ },
+                icon = painterResource(id = R.drawable.apple),
+                contentDescription = "Apple logo"
+            )
+            LogoButton(
+                onClick = { /* handle Google login */ },
+                icon = painterResource(id = R.drawable.google),
+                contentDescription = "Google logo"
+            )
+            IconNavigationButton(onClick = {onClick()},
+                icon = Icons.AutoMirrored.Filled.ArrowForward,
+                modifier = Modifier.padding(start = 16.dp),
+                text = action,
+            )
+        }
+    }
+}
 @Composable
 fun LogoButton(
     onClick: () -> Unit,

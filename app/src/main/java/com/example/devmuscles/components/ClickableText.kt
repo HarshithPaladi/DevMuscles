@@ -27,7 +27,7 @@ fun ClickableTextWithUnderline(
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
         modifier = modifier
-            .padding(top = 40.dp, start = 40.dp)
+            .padding(start = 40.dp)
             .drawBehind {
                 if (requireUnderline) {
                     val strokeWidthPx = 5.dp.toPx()

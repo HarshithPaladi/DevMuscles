@@ -119,7 +119,7 @@ fun ActivityPicker(navController: NavController){
                 IconNavigationButton(
                     text = "START",
                     onClick = {
-                        navController.navigate("activity_picker")
+                        navController.navigate("login")
                     },
                     icon = Icons.AutoMirrored.Filled.ArrowForward,
                 )
