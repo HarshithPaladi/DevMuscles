@@ -87,7 +87,7 @@ fun HeightPicker(navController: NavController){
                 textStyle = TextStyle(fontSize = 32.sp),
                 dividerColor = AppGreen,
                 textColor = AppWhite,
-                startIndex = 4
+                startIndex = 50
             )
             Text(text = "cm",
                 modifier = Modifier.offset(

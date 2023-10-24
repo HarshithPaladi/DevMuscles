@@ -84,7 +84,8 @@ fun AgePicker(navController: NavController){
                 textModifier = Modifier.padding(8.dp),
                 textStyle = TextStyle(fontSize = 32.sp),
                 dividerColor = AppGreen,
-                textColor = AppWhite
+                textColor = AppWhite,
+                startIndex = 21
             )
         }
 

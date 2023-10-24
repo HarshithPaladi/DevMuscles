@@ -87,7 +87,7 @@ fun WeightPicker(navController: NavController){
                 textStyle = TextStyle(fontSize = 32.sp),
                 dividerColor = AppGreen,
                 textColor = AppWhite,
-                startIndex = 4
+                startIndex = 40
             )
             Text(text = "kg",
                 modifier = Modifier.offset(
